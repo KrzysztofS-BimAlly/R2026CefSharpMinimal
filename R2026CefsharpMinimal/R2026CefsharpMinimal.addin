@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>Niczuk Library Browser Plugin for Autodesk Revit</Name>
+    <Assembly>C:\ProgramData\Autodesk\ApplicationPlugins\R2026CefsharpMinimal\R2026CefsharpMinimal.dll</Assembly>
+    <AddInId>fedf17a1-5b66-4d70-b681-1ba75bfd9b36</AddInId>
+    <VendorId>X</VendorId>
+    <VendorDescription>X</VendorDescription>
+    <FullClassName>R2026CefsharpMinimal.App</FullClassName>
+  </AddIn>
+  <ManifestSettings>
+    <UseRevitContext>False</UseRevitContext>
+    <ContextName>R2026CefsharpMinimalBrowserContext</ContextName>
+  </ManifestSettings>
+</RevitAddIns>
