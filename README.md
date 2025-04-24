@@ -33,6 +33,6 @@ DependencyChecker.AssertAllDependenciesPresent(cefSettings.Locale, cefSettings.L
 ```
 Which threw an exception that locales/en-US.pak was not found.
 
-To make sure that this folder is copied I had to set <CefSharpBuildAction>None</CefSharpBuildAction> in my .csproj.
+To make sure that this folder is copied I had to set `<CefSharpBuildAction>None</CefSharpBuildAction>` in my .csproj.
 
 After that, the browser works!
