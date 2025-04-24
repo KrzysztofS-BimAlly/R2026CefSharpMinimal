@@ -1,3 +1,5 @@
+The solution has been **found**, see bottom of this readme.
+
 This repository contains a minimal Revit 2026 plugin demonstrating a crash that occurs in my case, when InitializeComponent is called on a WPF window containing a ChromiumWebBrowser from the CefSharp library.
 
 The addin and build output have to be copied manually to `C:\ProgramData\Autodesk\Revit\Addins\2026\R2026CefsharpMinimal.addin` and `C:\ProgramData\Autodesk\ApplicationPlugins\R2026CefsharpMinimal\` respectively.
@@ -20,3 +22,17 @@ I had attempted to look into Revit Journals, last available information is that 
 ' 1:< GUI Resource Usage GDI: Avail 8745, Used 1255, User: Used 489 
 ' 1:< The requested assembly 'CefSharp.Core.Runtime, Version=135.0.170.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138' was loaded to the context 'R2026CEFSHARPMINIMALBROWSERCONTEXT' from 'C:\ProgramData\Autodesk\ApplicationPlugins\R2026CefsharpMinimal\CefSharp.Core.Runtime.dll'. 
 ```
+
+SOLUTION:
+
+In Windows' Event Viewer I noticed that it's `libcef.dll` that caused the crash with an exception code of 0x80000003. Eventually found some C# code that can be ran to find missing dependencies:
+
+```
+var cefSettings = new CefSharp.Wpf.CefSettings();
+DependencyChecker.AssertAllDependenciesPresent(cefSettings.Locale, cefSettings.LocalesDirPath, cefSettings.ResourcesDirPath, false, cefSettings.BrowserSubprocessPath);
+```
+Which threw an exception that locales/en-US.pak was not found.
+
+To make sure that this folder is copied I had to set <CefSharpBuildAction>None</CefSharpBuildAction> in my .csproj.
+
+After that, the browser works!
