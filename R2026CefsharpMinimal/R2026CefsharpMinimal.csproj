@@ -10,6 +10,7 @@
 
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 
+    <CefSharpBuildAction>None</CefSharpBuildAction>
   </PropertyGroup>
 
   <ItemGroup>
